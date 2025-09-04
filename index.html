@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pikachu Zoom Grid</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+      cursor: none;
+    }
+    #container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      transform-origin: center;
+      background-image: url('https://i.pinimg.com/originals/89/12/fa/8912fa56dc249ccc8e2910c88fec7e87.gif');
+      background-size: 50px 50px;
+      background-position: center;
+      background-repeat: repeat;
+      background-color: #fbbf24; /* Fill transparent areas */
+      transition: transform 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container"></div>
+
+  <script>
+    const container = document.getElementById('container');
+
+    // Mouse move → zoom in/out via container scale
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX / window.innerWidth; // 0 (left) to 1 (right)
+
+      // Scale: 1.0x (normal) to 3.0x (zoomed in)
+      const scale = 1 + x * 2;
+
+      container.style.transform = `scale(${scale})`;
+    });
+  </script>
+
+</body>
+</html>
